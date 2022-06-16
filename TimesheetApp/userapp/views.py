@@ -27,10 +27,26 @@ class HomePageView(TemplateView):
 
 
 class DoctorList(ListView):
+    # Approach 1 - let's change the Queryset object based on user Role. Code will look something like this - 
+#     queryset = Doctor.objects.all()
+#     model = Doctor
+#     def get_queryset(self):
+#         logged_in_user =  Doctor.objects.filter(user=self.request.user)
+#         if logged_in_user.is_Admin:
+#             doctor_list = Doctor.objects.all()
+#         else:
+#             doctor_list = logged_in_user
+#         return doctor_list
+
+
+    # Approach 2 - Set queryset = Doctor.objects.all() and in template check the user Role and modify the data to be displayed.  
+    # Keep the view as it is and then change the template to see {% if request.user.doctor.is_Admin %} then display only doctor from doctor_list whose {% doctor.user == request.user %} 
     queryset = Doctor.objects.all()
     model = Doctor
     template_name = 'Doctor/doctor_list.html'
     context_object_name = 'doctor_list'
+    
+
 
 
 class DoctorDetail(LoginRequiredMixin, DetailView):
