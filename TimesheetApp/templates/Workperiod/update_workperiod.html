@@ -1,0 +1,17 @@
+{% extends 'Doctor/base.html' %}
+{% block title %} Update Workperiod {% endblock %}
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %} <br>
+    Doctor : {{object.doctor}}
+    {{ form.as_p }}
+
+    <input type="submit" value="Update"> <br>
+    <button><a href="{% url 'workperiod_list' %}">Display Workperiod</a></button>
+</form>
+
+{% endblock %}
+
+

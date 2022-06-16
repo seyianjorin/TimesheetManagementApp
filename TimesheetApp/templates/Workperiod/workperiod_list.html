@@ -1,0 +1,41 @@
+{% extends 'Doctor/base.html' %}
+{% block title %} List of Workperiods{% endblock %}
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+             <td>ID&ensp;</td>
+            <td>Doctor</td>
+            <td>Time In&ensp;</td>
+            <td>Time Out &ensp;</td>
+            <td>Date&ensp;</td>
+            <td>Location&ensp;</td>
+            <td>Payroll</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for workperiod in workperiod_list %}
+            <tr>
+                <td>{{workperiod.id}}&ensp;</td>
+                <td>{{workperiod.doctor.user}}&ensp;</td> <!-- change doctor stuff  -->
+                <td>{{workperiod.clockIn}}&ensp;</td>
+                <td>{{workperiod.clockOut}}&ensp;</td>
+                <td>{{workperiod.date}}&ensp;</td>
+                <td>{{workperiod.location}}&ensp;</td>
+                <td>{{workperiod.payroll}}&ensp;</td>
+                <td>
+                    <button><a href="{% url 'update_workperiod' workperiod.user_id %}">Update</a></button>
+                </td>
+                <td>
+                    <button><a href="{% url 'WorkperiodDetail' workperiod.user_id %}">View</a></button>
+                </td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+<button><a href="{% url 'create_workperiod' %}">Add Workperiod</a></button>  <button><a href="{% url 'doctor_list' %}">Display All Doctors</a></button>
+
+{% endblock %}

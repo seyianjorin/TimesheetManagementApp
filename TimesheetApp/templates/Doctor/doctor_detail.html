@@ -1,0 +1,14 @@
+{% extends 'Doctor/base.html' %}
+{% block title %} Doctor Detail {% endblock %}
+{% block content %}
+{% if doctor.is_Admin %}
+<h1>{{Doctor}}</h1> <br>
+First Name: {{doctor.user.first_name}} <br>
+Last name: {{doctor.user.last_name}} <br>
+Specialization: {{doctor.specialization}} <br>
+Department ID: {{doctor.departmentId}} <br>
+
+<button><a href="{% url 'update_doctor' doctor.id %}">Update</a></button>
+<button><a href="{% url 'doctor_list' %}">Display All Doctors</a></button>
+{% endif %}
+{% endblock %}

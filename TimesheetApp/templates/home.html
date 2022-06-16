@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>Home</title>
+</head>
+<body>
+
+<div>
+{% if user.username %}
+    <div id="header">
+
+                <p>User: {{ user.username }} | <a href="{% url 'logout' %}">logout</a></p>
+                <a href="{% url 'home' %}">Home</a>
+
+</div>
+    <h1> Welcome to the WorkPeriod App</h1><br>
+<button><a href="{% url 'workperiod_list' %}">Display Workperiods</a></button> <br>
+<br>
+<br>
+<button><a href="{% url 'create_workperiod' %}">Add Workperiod</a></button> <br>
+<br>
+<br>
+<button><a href="{% url 'doctor_list' %}">Display All Doctors</a></button><br>
+<br>
+<br>
+<button><a href="{% url 'create_doctor' %}">Add Doctor</a></button> <br>
+<br>
+<br>
+{% else %}
+    <h1> Welcome to the WorkPeriod App</h1><br>
+<p><a href="{% url 'login' %}?next={{request.path}}">login</a></p>
+<p><a href="{% url 'register' %}"> Register </a></p>
+{% endif %}
+
+</div>
+
+</body>
+
+</html>
+
+
+

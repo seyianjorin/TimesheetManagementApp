@@ -1,0 +1,17 @@
+{% extends 'Doctor/base.html' %}
+
+{% block title %} Workperiod Detail {% endblock %}
+{% block content %}
+
+<h1>{{WorkperiodDetail}}</h1> <br>
+Time in: {{WorkperiodDetail.clockIn}} <br>
+Time out: {{WorkperiodDetail.clockOut}} <br>
+Date: {{WorkperiodDetail.date}} <br>
+Location: {{WorkperiodDetail.location}} <br>
+Doctor: {{WorkperiodDetail.doctor.user}} <br>
+Payroll: {{WorkperiodDetail.payroll}} <br>
+
+<button><a href="{% url 'update_workperiod' WorkperiodDetail.id %}">Update</a></button>
+<button><a href="{% url 'workperiod_list' %}">Display All Workperiods</a></button>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'Doctor/base.html' %}
+{% block title %} List of Doctors {% endblock %}
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+             <td>ID&ensp;</td>
+            <td>First Name&ensp;</td>
+            <td>Last Name &ensp;</td>
+            <td>Specialization&ensp;</td>
+            <td>Department Id&ensp;</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if request.user.doctor.is_admin %}
+        {% for doctor in doctor_list %}
+            <tr>
+                <td>{{doctor.id}}&ensp;</td>
+                <td><a href="{% url 'doctor_detail' doctor.id %}">{{doctor.user.first_name}}&ensp;</a></td>
+                <td><a href="{% url 'doctor_detail' doctor.id %}">{{doctor.user.last_name}}&ensp;</a></td>
+                <td>{{doctor.specialization}}</td>
+                <td>{{doctor.departmentId}}</td>
+                <td>
+                    <button><a href="{% url 'update_doctor' doctor.user_id %}">Update</a></button>
+                </td>
+                <td>
+                    <button><a href="{% url 'doctor_detail' doctor.user_id %}">View</a></button>
+                </td>
+            </tr>
+        {% endfor %}
+        {% else %}
+             <h3>No list of Drs</h3>
+        {% endif %}
+    
+    </tbody>
+
+</table>
+
+<button><a href="{% url 'create_doctor' %}">Add Doctor</a></button>
+<button><a href="{% url 'workperiod_list' %}">Display All Workperiods</a></button>
+<button><a href="{% url 'create_workperiod' %}">Add Workperiod</a></button>
+
+{% endblock %}
